@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 1em;
+}
+.bg-yellow {
+  background-color: yellow;
+}

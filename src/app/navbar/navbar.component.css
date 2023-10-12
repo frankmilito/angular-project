@@ -1,0 +1,7 @@
+h3 {
+  color: red;
+  cursor: pointer;
+  border: 2px solid rgba(145, 6, 6, 0.897);
+  padding: 2em;
+  border-radius: 10px;
+}
