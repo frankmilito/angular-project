@@ -1,2 +1,6 @@
-<app-postlist [postMessage]="postMessage" />
-<button (click)="sendMessage()">Click</button>
+<!-- <app-postlist [postMessage]="postMessage" />
+<button (click)="sendMessage()">Click</button> -->
+
+<ul>
+  <li *ngFor="let post of posts">{{ post.title }}</li>
+</ul>

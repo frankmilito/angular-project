@@ -55,7 +55,7 @@
   <p *ngSwitchCase="'step 3'">Step three form</p>
   <p *ngSwitchDefault>Something else</p>
 </div> -->
-
+<!-- 
 <div class="container">
   <h1>User details</h1>
   <input type="text" placeholder="Enter name" [(ngModel)]="name" />
@@ -78,7 +78,7 @@
         <th>Address</th>
         <th>Action</th>
       </tr>
-      <!-- <div *ngFor="let user of userList; let i = index"> -->
+
       <tr *ngFor="let user of userList; let i = index">
         <td>{{ i + 1 }}</td>
         <td>{{ user.name }}</td>
@@ -86,27 +86,201 @@
         <td>{{ user.address }}</td>
         <td (click)="onDelete(i)"><button>Delete</button></td>
       </tr>
-      <!-- </div> -->
+
     </table>
   </div>
 
   <ng-template #noUsers>
     <p>No users available</p>
   </ng-template>
-</div>
+</div> -->
 
-<!-- 
-  <tr>
-    <td>daf</td>
-    <td>hi</td>
-    <td>ad</td>
-    <td>daf</td>
-    <td>Delete</td>
-  </tr>
-  <tr>
-    <td>daf</td>
-    <td>hi</td>
-    <td>ad</td>
-    <td>daf</td>
-    <td>Delete</td>
-  </tr> -->
+<!-- <h1>{{ title | summary }}</h1> -->
+<!-- <app-post></app-post> -->
+<!-- <button (click)="onAdd()">Add</button>
+<ul>
+  <li *ngFor="let list of listing">{{ list.title }}</li>
+</ul> -->
+
+<!-- <div class="container mt-5">
+  <div class="form-area">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="form-group">
+        <label>First name</label>
+        <input
+          type="text"
+          placeholder="Enter firstname"
+          class="form-control"
+          name="firstName"
+          ngModel
+          #firstName="ngModel"
+          (change)="getValue(firstName)"
+          required
+          [ngClass]="{ 'is-invalid': firstName.touched && firstName.invalid }"
+          minlength="5"
+          maxlength="10"
+        />
+
+        <div *ngIf="firstName.errors?.['required']">
+          <div
+            class="alert alert-danger mt-2"
+            *ngIf="firstName.touched && firstName.invalid"
+          >
+            Please enter your first name
+          </div>
+        </div>
+        <div *ngIf="firstName.errors?.minlength">
+          <div
+            class="alert alert-danger mt-2"
+            *ngIf="firstName.touched && firstName.invalid"
+          >
+            First name must be at least 5 characters long
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email </label>
+        <input
+          type="email"
+          placeholder="Enter email"
+          class="form-control"
+          name="email"
+          ngModel
+          #email="ngModel"
+          pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+          required
+          [ngClass]="{ 'is-invalid': email.touched && email.invalid }"
+        />
+        <div *ngIf="email.errors?.required">
+          <div
+            class="alert alert-danger mt-2"
+            *ngIf="email.touched && email.invalid"
+          >
+            Please enter your email
+          </div>
+        </div>
+        <div *ngIf="email.errors?.pattern">
+          <div
+            class="alert alert-danger mt-2"
+            *ngIf="email.touched && email.invalid"
+          >
+            Invalid email
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Address </label>
+        <textarea
+          cols="30"
+          rows="10"
+          placeholder="Enter Address"
+          class="form-control"
+          name="address"
+          ngModel
+          required
+          #address="ngModel"
+          [ngClass]="{ 'is-invalid': address.touched && address.invalid }"
+        ></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="f.invalid">
+        Submit
+      </button>
+    </form>
+  </div>
+</div> -->
+
+<div class="container mt-5">
+  <h2 class="display-3 danger text-center">Reactive Forms</h2>
+  <div class="form-area">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>First name</label>
+        <input
+          type="text"
+          placeholder="Enter firstname"
+          class="form-control"
+          name="firstName"
+          formControlName="firstName"
+        />
+        <div *ngIf="firstName.touched && firstName.invalid">
+          <div
+            class="alert alert-danger mt-2 py-2"
+            *ngIf="firstName.errors?.required"
+          >
+            Please enter your first name
+          </div>
+          <div
+            class="alert alert-danger mt-2"
+            *ngIf="firstName.errors?.minlength"
+          >
+            First name must be at least 5 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email </label>
+        <input
+          type="email"
+          placeholder="Enter email"
+          class="form-control"
+          name="email"
+          formControlName="email"
+        />
+        <div *ngIf="email.touched && email.invalid">
+          <div
+            class="alert alert-danger mt-2 py-2"
+            *ngIf="email.errors?.required"
+          >
+            Please enter your email
+          </div>
+          <div class="alert alert-danger mt-2" *ngIf="email.errors?.email">
+            Invalid email
+          </div>
+        </div>
+      </div>
+      <div formGroupName="contactDetails">
+        <div class="form-group">
+          <label>Address </label>
+          <textarea
+            cols="30"
+            rows="10"
+            placeholder="Enter Address"
+            class="form-control"
+            name="address"
+            formControlName="address"
+            [ngClass]="{ 'is-invalid': address.touched && address.invalid }"
+          ></textarea>
+          <div *ngIf="address.touched && address.invalid">
+            <div
+              class="alert alert-danger mt-2 py-2"
+              *ngIf="address.errors?.required"
+            >
+              Please enter your address
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Contact </label>
+          <input
+            type="text"
+            placeholder="Enter contact"
+            class="form-control"
+            name="contact"
+            formControlName="contact"
+          />
+          <div *ngIf="contact.touched && contact.invalid">
+            <div
+              class="alert alert-danger mt-2 py-2"
+              *ngIf="contact.errors?.required"
+            >
+              Please enter your contact
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="form.invalid">
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
